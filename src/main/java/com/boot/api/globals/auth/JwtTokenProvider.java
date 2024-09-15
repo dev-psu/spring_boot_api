@@ -39,7 +39,7 @@ public class JwtTokenProvider {
         String accessToken = Jwts.builder()
             .setSubject(REFRESH_TOKEN_KEY)
             .claim("id", user.getUserId())
-            .claim("userId", user.getUserEmail())
+            .claim("userEmail", user.getUserEmail())
             .claim("role", "")
             .setIssuedAt(now)
             .setExpiration(accessTokenExpiration)
@@ -49,7 +49,7 @@ public class JwtTokenProvider {
         String refreshToken = Jwts.builder()
             .setSubject(REFRESH_TOKEN_KEY)
             .claim("id", user.getId())
-            .claim("userId", user.getUserEmail())
+            .claim("userEmail", user.getUserEmail())
             .claim("role", "")
             .setIssuedAt(now)
             .setExpiration(refreshTokenExpiration)
@@ -64,7 +64,7 @@ public class JwtTokenProvider {
     public String extractSubFromToken(String token, TokenType tokenType) {
         try {
             Claims claims = getClaims(token, tokenType);
-            return claims.get("id").toString();
+            return claims.get("userEmail").toString();
         } catch (Exception e) {
             return null;
         }
