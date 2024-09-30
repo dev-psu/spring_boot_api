@@ -26,7 +26,8 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
             user.id,
             user.userEmail,
             user.phone,
-            user.userStatus
+            user.userStatus,
+            user.role
         )).from(user)
         .where(
             userEmailEq(findUserListDto.getUserEmail()),

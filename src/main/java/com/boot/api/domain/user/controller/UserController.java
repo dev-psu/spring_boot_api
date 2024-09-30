@@ -8,8 +8,10 @@ import com.boot.api.domain.user.vo.FindUserListResultVo;
 import com.boot.api.domain.user.vo.LoginVo;
 import com.boot.api.globals.annotations.auth.ValidateNonLogin;
 import com.boot.api.globals.annotations.pagination.Pagination;
+import com.boot.api.globals.annotations.role.RequireRole;
 import com.boot.api.globals.auth.JwtTokenProvider;
 import com.boot.api.globals.auth.TokenInfo;
+import com.boot.api.globals.common.enums.Role;
 import com.boot.api.globals.response.BasePaginationResponse;
 import com.boot.api.globals.response.BaseResponse;
 import com.boot.api.globals.session.UserSessionInfo;
@@ -83,5 +85,18 @@ public class UserController {
         response.addCookie(refreshTokenCookie);
 
         return ResponseEntity.ok(BaseResponse.successWithData(LoginVo.builder().accessToken(tokenInfo.getAccessToken()).build()));
+    }
+
+    /**
+     * 사용자 삭제
+     * @param id
+     * @return
+     */
+    @PatchMapping("/user/{id}")
+    @RequireRole(Role.SUPER)
+    public ResponseEntity<Void> disabledUser(@PathVariable Integer id) {
+        userService.disabledUser(id);
+
+        return ResponseEntity.ok().build();
     }
 }

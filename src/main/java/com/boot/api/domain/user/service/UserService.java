@@ -59,4 +59,13 @@ public class UserService {
 
         return user.get();
     }
+
+    @Transactional
+    public void disabledUser(Integer id) {
+        Optional<User> findUser = userRepository.findById(id);
+        findUser.orElseThrow(() -> new EntityNotFoundException(id.toString(), ErrorCode.USER_NOT_FOUND));
+
+        User user = findUser.get();
+        user.disabledUser();
+    }
 }

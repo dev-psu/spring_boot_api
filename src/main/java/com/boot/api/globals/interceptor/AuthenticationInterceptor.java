@@ -75,6 +75,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         UserSessionInfo userSessionInfo = UserSessionInfo.builder()
             .id(user.getId())
             .userEmail(user.getUserEmail())
+            .role(user.getRole())
             .build();
 
         HttpSession session = request.getSession();

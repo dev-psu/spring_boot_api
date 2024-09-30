@@ -23,4 +23,8 @@ public class User extends BaseEntity {
     private UserStatus userStatus;
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    public void disabledUser() {
+        this.userStatus = UserStatus.DELETED;
+    }
 }
