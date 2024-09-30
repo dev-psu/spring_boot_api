@@ -2,7 +2,7 @@ package com.boot.api.globals.interceptor;
 
 import com.boot.api.domain.user.entity.User;
 import com.boot.api.domain.user.repository.UserRepository;
-import com.boot.api.globals.annotations.ValidateNonLogin;
+import com.boot.api.globals.annotations.auth.ValidateNonLogin;
 import com.boot.api.globals.auth.JwtTokenProvider;
 import com.boot.api.globals.common.enums.ErrorCode;
 import com.boot.api.globals.common.enums.TokenType;
@@ -16,7 +16,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;

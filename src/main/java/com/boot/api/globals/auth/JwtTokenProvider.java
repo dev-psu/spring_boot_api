@@ -38,7 +38,7 @@ public class JwtTokenProvider {
 
         String accessToken = Jwts.builder()
             .setSubject(REFRESH_TOKEN_KEY)
-            .claim("id", user.getUserId())
+            .claim("id", user.getId())
             .claim("userEmail", user.getUserEmail())
             .claim("role", "")
             .setIssuedAt(now)

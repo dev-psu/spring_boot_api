@@ -1,4 +1,4 @@
-package com.boot.api.globals.annotations;
+package com.boot.api.globals.annotations.auth;
 
 import java.lang.annotation.*;
 

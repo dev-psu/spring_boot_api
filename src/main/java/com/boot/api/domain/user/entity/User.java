@@ -1,5 +1,6 @@
 package com.boot.api.domain.user.entity;
 
+import com.boot.api.globals.common.enums.Role;
 import com.boot.api.globals.common.enums.UserStatus;
 import com.boot.api.globals.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,4 +21,6 @@ public class User extends BaseEntity {
     private String phone;
     @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }
