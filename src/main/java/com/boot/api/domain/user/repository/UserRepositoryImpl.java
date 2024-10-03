@@ -24,6 +24,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
     public Page<FindUserListResultVo> findUserList(FindUserListDto findUserListDto, UserSessionInfo userSessionInfo, Pageable pageable) {
         List<FindUserListResultVo> items = queryFactory.select(new QFindUserListResultVo(
             user.id,
+            user.userName,
             user.userEmail,
             user.phone,
             user.userStatus,

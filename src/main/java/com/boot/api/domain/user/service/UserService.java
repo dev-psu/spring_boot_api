@@ -1,11 +1,13 @@
 package com.boot.api.domain.user.service;
 
+import com.boot.api.domain.user.dto.CreateUserDto;
 import com.boot.api.domain.user.dto.FindUserListDto;
 import com.boot.api.domain.user.dto.LoginDto;
 import com.boot.api.domain.user.entity.User;
 import com.boot.api.domain.user.repository.UserRepository;
 import com.boot.api.domain.user.vo.FindUserListResultVo;
 import com.boot.api.globals.common.enums.ErrorCode;
+import com.boot.api.globals.common.enums.Role;
 import com.boot.api.globals.common.enums.UserStatus;
 import com.boot.api.globals.error.exception.BusinessException;
 import com.boot.api.globals.error.exception.EntityNotFoundException;
@@ -53,6 +55,27 @@ public class UserService {
         return user;
     }
 
+    @Transactional
+    public void createUser(CreateUserDto createUserDto) {
+        //Todo
+
+       Optional<User> findUser = userRepository.findByUserEmail(createUserDto.getUserEmail());
+
+       if(findUser.isPresent() && findUser.get().getUserStatus() != UserStatus.DELETED)
+           throw new BusinessException(ErrorCode.USER_ALREADY_EXISTS);
+
+       User user = User.builder()
+           .userEmail(createUserDto.getUserEmail())
+           .userName(createUserDto.getUserName())
+           .userPassword(createUserDto.getUserPassword())
+           .phone(createUserDto.getPhone())
+           .userStatus(UserStatus.ACTIVE)
+           .role(Role.OPERATOR)
+           .build();
+
+       userRepository.save(user);
+    }
+
     public User findUserByUserEmail(String userEmail) {
         Optional<User> user = userRepository.findByUserEmail(userEmail);
         user.orElseThrow(() -> new EntityNotFoundException(userEmail, ErrorCode.USER_NOT_FOUND));
@@ -67,5 +90,14 @@ public class UserService {
 
         User user = findUser.get();
         user.disabledUser();
+    }
+
+    @Transactional
+    public void deletedUser(Integer id) {
+        Optional<User> findUser = userRepository.findById(id);
+        findUser.orElseThrow(() -> new EntityNotFoundException(id.toString(), ErrorCode.USER_NOT_FOUND));
+
+        User user = findUser.get();
+        user.deletedUser();
     }
 }
