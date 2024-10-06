@@ -57,8 +57,8 @@ public class UserService {
 
     @Transactional
     public void createUser(CreateUserDto createUserDto, UserSessionInfo userSessionInfo) {
-        //Todo
-        setAccountCreationMode(createUserDto, userSessionInfo);
+       //Todo
+       setAccountCreationMode(createUserDto, userSessionInfo);
 
        Optional<User> findUser = userRepository.findByUserEmail(createUserDto.getUserEmail());
 
