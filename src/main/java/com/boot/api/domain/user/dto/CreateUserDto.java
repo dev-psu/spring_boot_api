@@ -18,6 +18,7 @@ public class CreateUserDto {
     private String userPasswordCheck;
     @ValidPhone
     private String phone;
+    private Integer groupId;
     @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
     @Enumerated(EnumType.STRING)

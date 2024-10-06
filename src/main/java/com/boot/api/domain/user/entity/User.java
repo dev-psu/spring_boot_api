@@ -21,20 +21,28 @@ public class User extends BaseEntity {
     @JsonIgnore
     private String userPassword;
     private String phone;
+    private Integer groupId;
     @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "groupId", insertable = false, updatable = false)
+    private UserGroup userGroup;
+
     @Builder
-    public User(Integer id, String userName, String userEmail, String userPassword, String phone, UserStatus userStatus, Role role) {
+    public User(Integer id, String userName, String userEmail, String userPassword, String phone, Integer groupId, UserStatus userStatus, Role role, UserGroup userGroup) {
         this.id = id;
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
         this.phone = phone;
+        this.groupId = groupId;
         this.userStatus = userStatus;
         this.role = role;
+        this.userGroup = userGroup;
     }
 
     public void disabledUser() {

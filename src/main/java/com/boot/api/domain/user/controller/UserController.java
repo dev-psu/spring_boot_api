@@ -82,7 +82,8 @@ public class UserController {
     @PostMapping("/user")
     @ValidateNonLogin
     public ResponseEntity<Void> createUser(@RequestBody @Valid CreateUserDto createUserDto) {
-        userService.createUser(createUserDto);
+        UserSessionInfo userSessionInfo = getUserSession();
+        userService.createUser(createUserDto, userSessionInfo);
 
         return ResponseEntity.ok().build();
     }

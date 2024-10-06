@@ -56,8 +56,9 @@ public class UserService {
     }
 
     @Transactional
-    public void createUser(CreateUserDto createUserDto) {
+    public void createUser(CreateUserDto createUserDto, UserSessionInfo userSessionInfo) {
         //Todo
+        setAccountCreationMode(createUserDto, userSessionInfo);
 
        Optional<User> findUser = userRepository.findByUserEmail(createUserDto.getUserEmail());
 
@@ -67,7 +68,7 @@ public class UserService {
        User user = User.builder()
            .userEmail(createUserDto.getUserEmail())
            .userName(createUserDto.getUserName())
-           .userPassword(createUserDto.getUserPassword())
+           .userPassword(EncryptUtil.hashString(createUserDto.getUserPassword()))
            .phone(createUserDto.getPhone())
            .userStatus(UserStatus.ACTIVE)
            .role(Role.OPERATOR)
@@ -99,5 +100,11 @@ public class UserService {
 
         User user = findUser.get();
         user.deletedUser();
+    }
+
+    private void setAccountCreationMode(CreateUserDto createUserDto, UserSessionInfo userSessionInfo) {
+        if(userSessionInfo.getRole().equals(Role.SUPER)) {
+            createUserDto.setGroupId(userSessionInfo.getGroupId());
+        }
     }
 }
