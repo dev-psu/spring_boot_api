@@ -34,7 +34,8 @@ public enum ErrorCode {
     USER_BLOCKED(403, "AU11", "차단된 유저입니다."),
     USER_PW_UNACCEPTABLE(409, "AU12", "기존에 등록한 비밀번호와 일치합니다. 다른 비밀번호로 변경해주세요."),
     USER_CANNOT_DELETE_OWN(409, "AU13", "본인 계정은 삭제할 수 없습니다."),
-    CM_NOT_FOUND(404, "ACM02", "No code mapper detected.");
+    CM_NOT_FOUND(404, "ACM02", "No code mapper detected."),
+    RESERVATION_NOT_FOUNT(404, "R001", "예약을 찾을 수 없습니다.");
 
     private int status;
     private String code;
