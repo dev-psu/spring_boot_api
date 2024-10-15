@@ -77,6 +77,8 @@ public class ReservationService {
         Reservation reservation = reservationRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(id.toString(), ErrorCode.RESERVATION_NOT_FOUNT));
 
         reservation.inActive();
+
+        reservationLogsRepository.save(new ReservationLogs(reservation));
     }
 
     @Transactional
@@ -84,5 +86,7 @@ public class ReservationService {
         Reservation reservation = reservationRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(id.toString(), ErrorCode.RESERVATION_NOT_FOUNT));
 
         reservation.isDeleted();
+
+        reservationLogsRepository.save(new ReservationLogs(reservation));
     }
 }
