@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 import static com.boot.api.domain.master.entity.QPlacebo.placebo;
+import static com.boot.api.globals.common.enums.YesNo.Y;
 import static io.jsonwebtoken.lang.Strings.hasText;
 
 @RequiredArgsConstructor
@@ -29,20 +30,22 @@ public class PlaceboRepositoryImpl implements PlaceboRepositoryCustom {
                 placebo.startDate,
                 placebo.endDate,
                 placebo.placeboStatus,
-                placebo.note
-            )).from(placebo)
-            .where(nameEq(findPlaceboListDto),
-                phoneEq(findPlaceboListDto),
-                statusEq(findPlaceboListDto))
-            .offset(pageable.getOffset())
-            .limit(pageable.getPageSize())
-            .fetch();
+                placebo.note))
+        .from(placebo)
+        .where(nameEq(findPlaceboListDto),
+            phoneEq(findPlaceboListDto),
+            statusEq(findPlaceboListDto),
+            placebo.isDeletedYn.ne(Y))
+        .offset(pageable.getOffset())
+        .limit(pageable.getPageSize())
+        .fetch();
 
         Long count = queryFactory.select(placebo.count())
             .from(placebo)
             .where(nameEq(findPlaceboListDto),
                 phoneEq(findPlaceboListDto),
-                statusEq(findPlaceboListDto))
+                statusEq(findPlaceboListDto),
+                placebo.isDeletedYn.ne(Y))
             .fetchOne();
 
         return new PageImpl<>(items, pageable, count);

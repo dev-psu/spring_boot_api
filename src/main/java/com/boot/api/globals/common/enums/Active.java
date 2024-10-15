@@ -13,7 +13,9 @@ import static java.util.stream.Collectors.toMap;
 @Getter
 public enum Active implements BaseEnum {
     ACTIVE("ACTIVE", "ACTIVE"),
-    INACTIVE("INACTIVE", "INACTIVE");
+    INACTIVE("INACTIVE", "INACTIVE"),
+    DELETED("DELETED", "DELETED");
+
 
     private final String value;
     private final String desc;
