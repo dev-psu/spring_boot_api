@@ -6,7 +6,6 @@ import com.boot.api.globals.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.yaml.snakeyaml.events.Event;
 
 @Entity
 @Getter
@@ -17,7 +16,8 @@ public class PlaceboLogs extends BaseEntity {
     private Integer id;
     private Integer placeboId;
     private String dateId;
-    private String name;
+    private Integer userId;
+    private String userName;
     private String phone;
     private String startDate;
     private String endDate;
@@ -31,7 +31,8 @@ public class PlaceboLogs extends BaseEntity {
     public PlaceboLogs(Placebo placebo) {
         this.placeboId = placebo.getId();
         this.dateId = placebo.getDateId();
-        this.name = placebo.getName();
+        this.userId = placebo.getUserId();
+        this.userName = placebo.getUserName();
         this.phone = placebo.getPhone();
         this.startDate = placebo.getStartDate();
         this.endDate = placebo.getEndDate();

@@ -63,7 +63,6 @@ public class ReservationController {
      * @param patchReservationDto
      * @return BaseResponse<>
      */
-
     @PatchMapping("/reservation/{id}")
     public ResponseEntity<BaseResponse<Void>> patchReservation(@PathVariable("id") Integer id, PatchReservationDto patchReservationDto) {
         reservationService.patchReservation(id, patchReservationDto);

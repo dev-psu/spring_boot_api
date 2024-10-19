@@ -25,7 +25,7 @@ public class PlaceboRepositoryImpl implements PlaceboRepositoryCustom {
         List<FindPlaceboListVo> items = queryFactory.select(new QFindPlaceboListVo(
                 placebo.id,
                 placebo.dateId,
-                placebo.name,
+                placebo.userName,
                 placebo.phone,
                 placebo.startDate,
                 placebo.endDate,
@@ -52,7 +52,7 @@ public class PlaceboRepositoryImpl implements PlaceboRepositoryCustom {
     }
 
     private BooleanExpression nameEq(FindPlaceboListDto findPlaceboListDto) {
-        return hasText(findPlaceboListDto.getName()) ? placebo.name.eq(findPlaceboListDto.getName()) : null;
+        return hasText(findPlaceboListDto.getName()) ? placebo.userName.eq(findPlaceboListDto.getName()) : null;
     }
 
     private BooleanExpression phoneEq(FindPlaceboListDto findPlaceboListDto) {

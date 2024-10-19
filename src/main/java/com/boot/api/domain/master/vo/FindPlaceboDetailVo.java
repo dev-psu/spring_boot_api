@@ -34,7 +34,7 @@ public class FindPlaceboDetailVo {
 
         public Logs(PlaceboLogs placeboLogs) {
             this.dateId = placeboLogs.getDateId();
-            this.name = placeboLogs.getName();
+            this.name = placeboLogs.getUserName();
             this.phone = placeboLogs.getPhone();
             this.startDate = placeboLogs.getStartDate();
             this.endDate = placeboLogs.getEndDate();
@@ -47,7 +47,7 @@ public class FindPlaceboDetailVo {
     public FindPlaceboDetailVo(Placebo placebo) {
         this.id = placebo.getId();
         this.dateId = placebo.getDateId();
-        this.name = placebo.getName();
+        this.name = placebo.getUserName();
         this.phone = placebo.getPhone();
         this.startDate = placebo.getStartDate();
         this.endDate = placebo.getEndDate();

@@ -30,9 +30,9 @@ public class ReservationRepositoryImpl implements ReservationRepositoryCustom {
             reservation.id,
             reservation.dateId,
             reservation.timeId,
-            reservation.reserverId,
-            reservation.reserverName,
-            reservation.reserverPhone,
+            reservation.reserveId,
+            reservation.reserveName,
+            reservation.reservePhone,
             reservation.reservationStatus))
         .from(reservation)
         .where(dateIdBetween(findReservationListDto.getDateIdBetweenFrom(), findReservationListDto.getDateIdBetweenTo()),
@@ -64,9 +64,9 @@ public class ReservationRepositoryImpl implements ReservationRepositoryCustom {
             reservation.id,
             reservation.dateId,
             reservation.timeId,
-            reservation.reserverId,
-            reservation.reserverName,
-            reservation.reserverPhone,
+            reservation.reserveId,
+            reservation.reserveName,
+            reservation.reservePhone,
             reservation.reservationStatus))
         .from(reservation)
         .where(reservation.id.eq(id),
@@ -80,15 +80,15 @@ public class ReservationRepositoryImpl implements ReservationRepositoryCustom {
     }
 
     private BooleanExpression reserveIdEq(Integer reserveId) {
-        return hasText(reserveId.toString()) ? reservation.reserverId.eq(reserveId) : null;
+        return hasText(reserveId.toString()) ? reservation.reserveId.eq(reserveId) : null;
     }
 
     private BooleanExpression reserveNameEq(String reserveName) {
-        return hasText(reserveName) ? reservation.reserverName.eq(reserveName) : null;
+        return hasText(reserveName) ? reservation.reserveName.eq(reserveName) : null;
     }
 
     private BooleanExpression reservePhoneEq(String reservePhone) {
-        return hasText(reservePhone) ? reservation.reserverPhone.eq(reservePhone) : null;
+        return hasText(reservePhone) ? reservation.reservePhone.eq(reservePhone) : null;
     }
 
     private BooleanExpression reservationStatusEq(Active reservationStatus) {
