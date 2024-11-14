@@ -1,5 +1,5 @@
 # SpringBoot API
-스프링 부트 API
+DEV 스프링 부트 API
 
 ## 개발환경
 - Java17

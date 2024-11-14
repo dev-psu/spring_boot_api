@@ -55,13 +55,18 @@ public class MasterController {
         return ResponseEntity.ok(BaseResponse.successWithNoData());
     }
 
+    /**
+     * 위약자 수정
+     * @param id
+     * @param patchPlaceboDto
+     * @return
+     */
     @PatchMapping("/master/placebo/{id}")
     public ResponseEntity<BaseResponse<Void>> patchPlacebo(@PathVariable("id") Integer id, @RequestBody @Valid PatchPlaceboDto patchPlaceboDto) {
         masterService.patchPlacebo(id, patchPlaceboDto);
 
         return ResponseEntity.ok(BaseResponse.successWithNoData());
     }
-
 
     /**
      * 위약 비활성화
